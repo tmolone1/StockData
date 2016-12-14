@@ -14,3 +14,11 @@ In the Extratced Output Data you can see different columns having data for **Ope
 Where High refers to the highest price of the stock touched the same day, Low refer to the lowest price the stock was traded on the same day, Close refers to the closing price of that particular stock and the Volume refer to the number of share traded that day.
 
 R Package designed to assist the quantitative trader in the development, testing, and deployment of statistically based trading models. It has many features so check out its [link](https://cran.r-project.org/web/packages/quantmod/quantmod.pdf).
+
+***
+
+Thanks!
+
+Happy Learning! Your feedback would be appreciated!
+
+[shobhitsingh.in](http://shobhitsingh.in)
