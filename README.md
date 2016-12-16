@@ -5,6 +5,8 @@ This Shiny App will show you the Historical Stock data & Chart using R quantmod 
 
 Enter the Valid Stock Symbol in text box to extract the Historical data & chart. Adjust the last months using slider & output data to show using numeric input.
 
+This [Shiny App](https://shobhitsingh.shinyapps.io/StockDataApp/) Hosted on shinyapps.io
+
 **Symbol Examples - NSE, ^BSESN, RELIANCE.NS & TCS.NS etc.**
 
 Output data extracted using yahoo finace source.*
