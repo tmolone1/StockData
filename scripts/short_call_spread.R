@@ -1,12 +1,12 @@
 library(quantmod)
 library(tidyverse)
 library(lubridate)
-symb<-"SPY"
+symb<-"ARKF"
 exp<-"2021-04-16"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-A<-375
-B<-395
+A<-44.82
+B<-49.82
 posn_size<-200
 
 strategy<-"Short Call Spread"
