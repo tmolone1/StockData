@@ -6,7 +6,7 @@ symb<-"IWM"
 exp<-"2021-05-21"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-A<-220
+A<-219
 B<-235
 posn_size<-100
 
