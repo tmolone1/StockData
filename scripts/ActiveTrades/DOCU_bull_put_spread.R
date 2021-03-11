@@ -1,5 +1,6 @@
-rm(list=ls())
+rm(list=setdiff(ls(),c("basis","profit_pct","Active_Trades")))
 library(quantmod)
+options(tidyverse.quiet = TRUE)
 library(tidyverse)
 library(lubridate)
 symb<-"DOCU"

@@ -1,4 +1,4 @@
-rm(list=ls())
+rm(list=setdiff(ls(),c("basis","profit_pct","Active_Trades")))
 library(quantmod)
 library(tidyverse)
 library(lubridate)

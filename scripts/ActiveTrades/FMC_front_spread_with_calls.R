@@ -1,4 +1,4 @@
-rm(list=ls())
+rm(list=setdiff(ls(),c("basis","profit_pct","Active_Trades")))
 library(quantmod)
 library(tidyverse)
 library(lubridate)
@@ -12,8 +12,8 @@ posn_size<-100
 
 strategy<-"Front Spread with Calls"
 calls<-chain[["calls"]] 
-A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Ask))
-B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Bid))
+A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Bid))
+B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Ask))
 A_price_bought<-5.7
 B_price_sold<-3
 basis<-(2*B_price_sold-A_price_bought)*-posn_size
