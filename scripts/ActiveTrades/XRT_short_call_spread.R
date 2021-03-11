@@ -2,20 +2,20 @@ rm(list=ls())
 library(quantmod)
 library(tidyverse)
 library(lubridate)
-symb<-"QQQ"
-exp<-"2021-03-19"
+symb<-"XRT"
+exp<-"2021-04-16"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-A<-297
-B<-326
+A<-80
+B<-100
 posn_size<-100
 
 strategy<-"Short Call Spread"
 calls<-chain[["calls"]] 
 A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Bid))
 B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Ask))
-A_price_sold<-18.86
-B_price_bought<-1.86
+A_price_sold<-12.68
+B_price_bought<-2.68
 basis<-(A_price_sold-B_price_bought)*-posn_size
 net_quote<-A_price-B_price
 cost_to_close<-net_quote*posn_size
