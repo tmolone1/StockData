@@ -7,8 +7,8 @@ exp<-"2021-03-19"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
 width<-20
-A<-185
-B<-200
+A<-170
+B<-220
 posn_size<-100
 
 strategy<-"Bull Put Spread"
@@ -35,9 +35,11 @@ lines(rep(quote$Last,2),range(profit_loss),col="pink")
 lm1<-lm(prices[2:3]~profit_loss[2:3])
 BEP1<-as.numeric(lm1[["coefficients"]][1])
 
-writeLines(c(paste0("Net Credit: ", net_credit),
+writeLines(c(paste0("Symbol Quote: ", quote$Last),
+             paste0("Net Credit: ", net_credit),
              paste0("Days to Expiry: ", days_to_exp),
              paste0("Reward/Risk: ", round(reward_risk_ratio,2)),
+             paste0("% of risk covered by premium: ", net_credit/((B-A)*posn_size)),
              paste0("Break-even Point: ", BEP1)),
            con = stdout(), sep = "\n", useBytes = FALSE)
 

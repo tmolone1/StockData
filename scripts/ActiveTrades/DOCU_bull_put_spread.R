@@ -2,14 +2,13 @@ rm(list=ls())
 library(quantmod)
 library(tidyverse)
 library(lubridate)
-symb<-"NEE"
-exp<-"2021-04-16"
+symb<-"DOCU"
+exp<-"2021-03-19"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-width<-20
-A<-70
-B<-77.5
-posn_size<-200
+A<-170
+B<-220
+posn_size<-100
 
 strategy<-"Bull Put Spread"
 puts<-chain[["puts"]] 
@@ -17,8 +16,8 @@ A_price<-as.numeric(puts %>% filter(Strike == A) %>% select(Bid))
 B_price<-as.numeric(puts %>% filter(Strike == B) %>% select(Ask))
 net_quote<-A_price-B_price
 cost_to_close<-net_quote*-posn_size
-A_price_bought<-1.15
-B_price_sold<-3.95
+A_price_bought<-0.47
+B_price_sold<-10.8
 basis<-(B_price_sold-A_price_bought)*-posn_size
 profit_pct<-(cost_to_close+basis)/basis
 max_risk<-(B-A)*-posn_size-basis
@@ -39,7 +38,7 @@ lm1<-lm(prices[2:3]~profit_loss[2:3])
 BEP1<-as.numeric(lm1[["coefficients"]][1])
 
 writeLines(c(paste0("Symbol quote: ", quote$Last),
-              paste0("Cost to Close: ", cost_to_close),
+             paste0("Cost to Close: ", cost_to_close),
              paste0("Current Profit: ", profit_pct),
              paste0("Days to Expiry: ", days_to_exp),
              paste0("Break-even Point: ", BEP1),

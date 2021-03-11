@@ -34,7 +34,7 @@ profit_loss<-c(rep(-basis,2),rep(max_reward,2))
 lm1<-lm(prices[2:4]~profit_loss[2:4])
 BEP<-as.numeric(lm1[["coefficients"]][1])
 
-plot(prices,profit_loss,type="o")
+plot(prices,profit_loss,type="o", main=c(symb,strategy))
 lines(c(A*.8,B*1.2),c(0,0))
 lines(rep(quote$Last,2),range(profit_loss),col="pink")
 

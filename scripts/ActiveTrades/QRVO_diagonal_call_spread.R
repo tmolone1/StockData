@@ -41,7 +41,7 @@ projected_A_price_backmonth<-0.5*A_price_backmonth
 prices<-c(A*.8,A,B,B*1.2)
 profit_loss<-c(rep(-basis,2),rep(((B-A)*-posn_size-basis),2))
 profit_loss_after_sell_backmonth_call<-c(rep(-basis,2),rep(((B-A)*-posn_size-basis),2))+rep(projected_A_price_backmonth*posn_size,length(profit_loss))
-plot(prices,profit_loss,type="o", ylim = c(min(profit_loss),max(profit_loss_after_sell_backmonth_call)))
+plot(prices,profit_loss,type="o", ylim = c(min(profit_loss),max(profit_loss_after_sell_backmonth_call)), main=c(symb,strategy))
 lines(c(A*.8,B*1.2),c(0,0))
 lines(prices,profit_loss_after_sell_backmonth_call,type="o", col="deepskyblue")
 

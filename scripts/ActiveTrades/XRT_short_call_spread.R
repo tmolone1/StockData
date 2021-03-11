@@ -32,7 +32,7 @@ ATM_IV<-as.numeric(head(arrange(calls,desc(Vol)) %>% select(IV),1))
 
 prices<-c(A*.8,A,B,B*1.2)
 profit_loss<-c(rep(-basis,2),rep(((B-A)*-posn_size-basis),2))
-plot(prices,profit_loss,type="o")
+plot(prices,profit_loss,type="o", main=c(symb,strategy))
 lines(c(A*.8,B*1.2),c(0,0))
 lines(rep(quote$Last,2), c(-basis,basis), col="pink")
 lm1<-lm(prices[2:3]~profit_loss[2:3])

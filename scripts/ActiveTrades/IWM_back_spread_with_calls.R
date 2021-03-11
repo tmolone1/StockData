@@ -38,7 +38,7 @@ BEP2<-as.numeric(lm2[["coefficients"]][1])
 target<-1.25*228 # set based on ATM IV and underlying price when trade was entered
 upside_implied_profit_potential<-(target-A)*-posn_size+(target-B)*2*posn_size-basis
 upside_reward_risk<-upside_implied_profit_potential/-max_risk
-plot(prices,profit_loss,type="o")
+plot(prices,profit_loss,type="o", main=c(symb,strategy))
 lines(c(A*.8,B*1.2),c(0,0))
 lines(rep(quote$Last,2),range(profit_loss), col="pink")
 
