@@ -1,3 +1,4 @@
+# This codes takes a minute to run, SORRY!!!!
 rm(list=ls())
 library(quantmod)
 library(tidyverse)

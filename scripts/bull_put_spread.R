@@ -7,8 +7,8 @@ exp<-"2021-03-19"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
 width<-20
-A<-175
-B<-215
+A<-185
+B<-200
 posn_size<-100
 
 strategy<-"Bull Put Spread"
@@ -19,7 +19,7 @@ net_quote<-A_price-B_price
 credit_debit<-ifelse(net_quote<=0, "credit", "debit")
 net_credit<-net_quote*-posn_size
 max_risk<-(B-A)*-posn_size+net_credit
-reward_risk_ratio<-net_credit/max_risk
+reward_risk_ratio<-net_credit/-max_risk
 sold_prem_pct<-net_quote/quote$Last
 
 days_to_exp<-as.period(lubridate::interval(Sys.Date(),as.Date(exp)),unit = "day")
@@ -37,6 +37,7 @@ BEP1<-as.numeric(lm1[["coefficients"]][1])
 
 writeLines(c(paste0("Net Credit: ", net_credit),
              paste0("Days to Expiry: ", days_to_exp),
+             paste0("Reward/Risk: ", round(reward_risk_ratio,2)),
              paste0("Break-even Point: ", BEP1)),
            con = stdout(), sep = "\n", useBytes = FALSE)
 

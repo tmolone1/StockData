@@ -6,8 +6,8 @@ symb<-"PYPL"
 exp<-"2021-04-16"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-width<-20
-A<-250
+width<-40
+A<-220
 B<-A+width
 C<-B+width
 D<-C+width
@@ -36,12 +36,14 @@ prices<-c(A*.8,A,C,D,D*1.2)
 profit_loss<-c(rep(net_credit,2),C_strike_profit_potential,rep(net_credit,2))
 plot(prices,profit_loss,type="o")
 lines(c(A*.8,D*1.2),c(0,0))
+lines(rep(quote$Last,2),range(profit_loss),col="pink")
 lm1<-lm(prices[2:3]~profit_loss[2:3])
 BEP1<-as.numeric(lm1[["coefficients"]][1])
 lm2<-lm(prices[3:4]~profit_loss[3:4])
 BEP2<-as.numeric(lm2[["coefficients"]][1])
 
-writeLines(c(paste0("Net Credit: ", net_credit),
+writeLines(c(paste0("Symbol Quote: ", quote$Last),
+             paste0("Net Credit: ", net_credit),
              paste0("Days to Expiry: ", days_to_exp),
              paste0("Reward/Risk @ B Strike: ", round(B_strike_reward_risk_ratio,2)),
              paste0("Break-even Points: ", BEP1, " ", BEP2)),
