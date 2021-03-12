@@ -14,9 +14,9 @@ posn_size<-300
 
 strategy<-"Skip Strike Butterfly with Calls"
 calls<-chain[["calls"]] 
-A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Ask))
-B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Bid))
-D_price<-as.numeric(calls %>% filter(Strike == D) %>% select(Ask))
+A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Bid))
+B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Ask))
+D_price<-as.numeric(calls %>% filter(Strike == D) %>% select(Bid))
 A_price_bought<-8.27
 B_price_sold<-4.77
 D_price_bought<-0.88

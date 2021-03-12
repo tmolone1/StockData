@@ -15,15 +15,15 @@ posn_size<-100
 strategy<-"Diagonal Call Spread"
 frontcalls<-frontchain[["calls"]] 
 backcalls<-backchain[["calls"]] 
-A_price<-as.numeric(frontcalls %>% filter(Strike == A) %>% select(Bid))
-B_price<-as.numeric(backcalls %>% filter(Strike == B) %>% select(Ask))
+A_price<-as.numeric(frontcalls %>% filter(Strike == A) %>% select(Ask))
+B_price<-as.numeric(backcalls %>% filter(Strike == B) %>% select(Bid))
 A_price_backmonth<-as.numeric(backcalls %>% filter(Strike == A) %>% select(Bid))
 A_price_sold<-8.05
 B_price_bought<-7.85
 basis<-(A_price_sold-B_price_bought)*-posn_size
 net_quote<-A_price-B_price
 cost_to_close<-net_quote*posn_size
-profit_pct<-round((cost_to_close+basis)/basis,3)
+profit_pct<-round((cost_to_close-basis)/basis,3)
 
 close_target_50pct_gains<-basis*-0.5
 close_target_80pct_gains<-basis*-0.2

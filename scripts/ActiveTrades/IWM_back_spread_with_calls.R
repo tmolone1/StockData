@@ -12,10 +12,10 @@ posn_size<-100
 
 strategy<-"Back Spread with Calls"
 calls<-chain[["calls"]] 
-A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Bid))
-B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Ask))
+A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Ask))
+B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Bid))
 net_quote<-2*B_price-A_price
-cost_to_close<-net_quote*posn_size
+cost_to_close<-net_quote*-posn_size
 A_price_sold<-17.46
 B_price_bought<-8.05
 basis<-(A_price_sold-2*B_price_bought)*-posn_size
@@ -27,7 +27,7 @@ days_to_exp<-as.period(lubridate::interval(Sys.Date(),as.Date(exp)),unit = "day"
 days_to_exp<-ceiling(days_to_exp@day*5/7)
 ATM_IV<-as.numeric(head(arrange(calls,desc(Vol)) %>% select(IV),1))
 stop_loss_est<-quote$Last-(2*net_quote)/-.3
-profit_pct<-round((cost_to_close-basis)/-basis,3)
+profit_pct<-round((cost_to_close+basis)/basis,3)
 
 prices<-c(A*.8,A,spread_midpoint,B,B*1.2)
 profit_loss<-c(rep(-basis,2),trade_value_at_midpoint,max_risk,-(B*1.2-A)*posn_size+(B*1.2-B)*posn_size*2-basis)
@@ -46,9 +46,9 @@ lines(rep(quote$Last,2),range(profit_loss), col="pink")
 writeLines(c(paste0("Symbol quote ", quote$Last),
              paste0("Current Profit ", profit_pct),
              paste0("Days to Expiry: ", days_to_exp),
-             paste0("Current Cost to Close: ", cost_to_close),
-             paste0("Upside Profit Target: ", round(upside_implied_profit_potential*0.8,2)),
-             paste0("Upside Profit Target net quote: ", round((upside_implied_profit_potential*0.8)/posn_size),2),
+             paste0("Current Cost to Close: ", round(cost_to_close,2)),
+             paste0("Upside Profit Target: ", round(upside_implied_profit_potential*0.5,2)),
+             paste0("Upside Profit Target net quote: ", round((upside_implied_profit_potential*0.5)/posn_size,2)),
              paste0("Break-even Points: ", BEP1, " ", BEP2),
              paste0("Generally close these trades with around 25-30 days to expiry")),
            con = stdout(), sep = "\n", useBytes = FALSE)

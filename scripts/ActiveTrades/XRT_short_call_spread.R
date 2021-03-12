@@ -12,8 +12,8 @@ posn_size<-100
 
 strategy<-"Short Call Spread"
 calls<-chain[["calls"]] 
-A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Bid))
-B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Ask))
+A_price<-as.numeric(calls %>% filter(Strike == A) %>% select(Ask))
+B_price<-as.numeric(calls %>% filter(Strike == B) %>% select(Bid))
 A_price_sold<-12.68
 B_price_bought<-2.68
 basis<-(A_price_sold-B_price_bought)*-posn_size
@@ -38,7 +38,7 @@ lines(rep(quote$Last,2), c(-basis,basis), col="pink")
 lm1<-lm(prices[2:3]~profit_loss[2:3])
 BEP<-as.numeric(lm1[["coefficients"]][1])
 
-writeLines(c(paste0("Symbol quote ", quote$Last),
+writeLines(c(paste0("Symbol Quote: ", quote$Last),
              paste0("Current Profit ", profit_pct),
              paste0("Days to Expiry: ", days_to_exp),
              paste0("Current Cost to Close: ", cost_to_close),

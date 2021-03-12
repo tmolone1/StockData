@@ -38,7 +38,8 @@ plot(prices,profit_loss,type="o", main=c(symb,strategy))
 lines(c(A*.8,B*1.2),c(0,0))
 lines(rep(quote$Last,2),range(profit_loss),col="pink")
 
-writeLines(c(paste0("Current Trade Value: ", -cost_to_close),
+writeLines(c(paste0("Symbol Quote: ", quote$Last),
+             paste0("Current Trade Value: ", -cost_to_close),
              paste0("Current Profit %: ", profit_pct),
              paste0("Days to Expiry: ", days_to_exp),
              paste0("Profit Target as 80% gains: ", max_reward*0.8),
