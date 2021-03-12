@@ -2,13 +2,13 @@ rm(list=setdiff(ls(),c("basis","profit_pct")))
 library(quantmod)
 library(tidyverse)
 library(lubridate)
-symb<-"DOCU"
+symb<-"AAPL"
 exp<-"2021-03-19"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-width<-20
-A<-170
-B<-220
+width<-5
+A<-100
+B<-150
 posn_size<-100
 
 strategy<-"Bull Put Spread"

@@ -2,12 +2,12 @@ rm(list=ls())
 library(quantmod)
 library(tidyverse)
 library(lubridate)
-symb<-"PYPL"
+symb<-"AAPL"
 exp<-"2021-04-16"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
-width<-40
-A<-220
+width<-10
+A<-115
 B<-A+width
 C<-B+width
 D<-C+width

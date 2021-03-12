@@ -2,12 +2,12 @@ rm(list=setdiff(ls(),c("basis","profit_pct","Active_Trades")))
 library(quantmod)
 library(tidyverse)
 library(lubridate)
-symb<-"DIS"
+symb<-"LOW"
 exp<-"2021-04-16"
 chain<-getOptionChain(symb, Exp = exp)
 quote<-getQuote(symb)
 width<-5
-A<-195
+A<-175
 B<-A+width
 posn_size<-100
 
