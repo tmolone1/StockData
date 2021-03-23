@@ -43,10 +43,12 @@ lm2<-lm(prices[3:4]~profit_loss[3:4])
 BEP2<-as.numeric(lm2[["coefficients"]][1])
 
 writeLines(c(paste0("Symbol Quote: ", quote$Last),
-             paste0("Net Credit: ", net_credit),
+             paste0("Net Debit: ", net_credit),
              paste0("Days to Expiry: ", days_to_exp),
              paste0("Reward/Risk @ B Strike: ", round(B_strike_reward_risk_ratio,2)),
-             paste0("Break-even Points: ", BEP1, " ", BEP2)),
+             paste0("Profit Potential @ B Strike: ", round(((B-A)*posn_size+net_credit),2)),
+             paste0("Break-even Points: ", BEP1, " ", BEP2),
+             paste0("Sell Target: ", round(((B-A)*posn_size+net_credit)-net_credit,2))),
            con = stdout(), sep = "\n", useBytes = FALSE)
 
 
