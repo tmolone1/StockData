@@ -3,8 +3,8 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 library(stringr)
-posns<-read_excel("./data/Positions Mar-23-2021.xlsx",sheet=2)
-cash<-3134.01
+posns<-read_excel("./data/Positions Mar-24-2021.xlsx",sheet=2)
+cash<-3576.36
 posns<-clean_names(posns)
 options<-posns %>% filter(security_type %in% c("Call","Put")) %>% arrange(quantity_position)
 equities<-posns %>% filter(security_type %in% c("Eqty"))
